@@ -21,8 +21,9 @@ class GenusController extends Controller
     public function typesExampleAction()
     {
         $genus = new Genus();
-        $genus->setName(4);
-        var_dump($genus);die;
+        $genus->setName('octopus');
+
+        var_dump($genus->getName());die;
     }
     /**
      * @Route("/genus/new")

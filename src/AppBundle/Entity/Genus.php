@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types=1);
 namespace AppBundle\Entity;
 
 use AppBundle\Repository\GenusRepository;
@@ -94,8 +94,9 @@ class Genus
         return $this->id;
     }
 
-    public function getName()
+    public function getName():string
     {
+        return 5;
         return $this->name;
     }
 
