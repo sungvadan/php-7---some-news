@@ -22,8 +22,13 @@ class GenusController extends Controller
     {
         $genus = new Genus();
         $genus->setName('octopus');
+        $genus->setFunFact('This is a fun fact');
+        var_dump($genus->getFunFact());
+        $genus->setFunFact(null);
+        var_dump($genus->getFunFact());
 
-        var_dump($genus->getName());die;
+
+        die;
     }
     /**
      * @Route("/genus/new")
