@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use AppBundle\Repository\GenusRepository;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -89,41 +90,38 @@ class Genus
         $this->genusScientists = new ArrayCollection();
     }
 
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName():string
+    public function getName():?string
     {
-        return 5;
         return $this->name;
     }
 
-    public function setName(string $name)
+    public function setName(?string $name):void
     {
         $this->name = $name;
     }
 
-    /**
-     * @return SubFamily
-     */
-    public function getSubFamily()
+
+    public function getSubFamily() :?SubFamily
     {
         return $this->subFamily;
     }
 
-    public function setSubFamily(SubFamily $subFamily = null)
+    public function setSubFamily(SubFamily $subFamily = null) :void
     {
         $this->subFamily = $subFamily;
     }
 
-    public function getSpeciesCount()
+    public function getSpeciesCount():?int
     {
         return $this->speciesCount;
     }
 
-    public function setSpeciesCount($speciesCount)
+    public function setSpeciesCount(?int $speciesCount):void
     {
         $this->speciesCount = $speciesCount;
     }
@@ -133,17 +131,19 @@ class Genus
         return $this->funFact;
     }
 
-    public function setFunFact(?string $funFact)
+    public function setFunFact(?string $funFact): void
     {
         $this->funFact = $funFact;
+
+        return;
     }
 
-    public function getUpdatedAt()
+    public function getUpdatedAt(): ?\DateTimeInterface
     {
         return new \DateTime('-'.rand(0, 100).' days');
     }
 
-    public function setIsPublished($isPublished)
+    public function setIsPublished(bool $isPublished):void
     {
         $this->isPublished = $isPublished;
     }
@@ -156,32 +156,32 @@ class Genus
     /**
      * @return ArrayCollection|GenusNote[]
      */
-    public function getNotes()
+    public function getNotes(): Collection
     {
         return $this->notes;
     }
 
-    public function getFirstDiscoveredAt()
+    public function getFirstDiscoveredAt(): ?\DateTimeInterface
     {
         return $this->firstDiscoveredAt;
     }
 
-    public function setFirstDiscoveredAt(\DateTime $firstDiscoveredAt = null)
+    public function setFirstDiscoveredAt(\DateTime $firstDiscoveredAt = null):void
     {
         $this->firstDiscoveredAt = $firstDiscoveredAt;
     }
 
-    public function getSlug()
+    public function getSlug(): ?string
     {
         return $this->slug;
     }
 
-    public function setSlug($slug)
+    public function setSlug($slug): void
     {
         $this->slug = $slug;
     }
 
-    public function addGenusScientist(GenusScientist $genusScientist)
+    public function addGenusScientist(GenusScientist $genusScientist): void
     {
         if ($this->genusScientists->contains($genusScientist)) {
             return;
@@ -206,7 +206,7 @@ class Genus
     /**
      * @return ArrayCollection|GenusScientist[]
      */
-    public function getGenusScientists()
+    public function getGenusScientists(): Collection
     {
         return $this->genusScientists;
     }
@@ -214,7 +214,7 @@ class Genus
     /**
      * @return \Doctrine\Common\Collections\Collection|GenusScientist[]
      */
-    public function getExpertScientists()
+    public function getExpertScientists(): Collection
     {
         return $this->getGenusScientists()->matching(
             GenusRepository::createExpertCriteria()
