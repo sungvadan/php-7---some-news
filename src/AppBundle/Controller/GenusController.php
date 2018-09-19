@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types =1);
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Genus;
@@ -14,6 +14,16 @@ use Symfony\Component\HttpFoundation\Response;
 
 class GenusController extends Controller
 {
+
+    /**
+     * @route("/types")
+     */
+    public function typesExampleAction()
+    {
+        $genus = new Genus();
+        $genus->setName(4);
+        var_dump($genus);die;
+    }
     /**
      * @Route("/genus/new")
      */
