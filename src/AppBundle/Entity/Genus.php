@@ -220,4 +220,16 @@ class Genus
             GenusRepository::createExpertCriteria()
         );
     }
+
+    public function feed(iterable $food): string
+    {
+        $foodItems = [];
+        foreach ($food as $foodItem){
+            $foodItems[] = $foodItem;
+        }
+        if(count($foodItems) == 0){
+            return sprintf('%s is looking at you in a funny way', $this->getName());
+        }
+        return sprintf('%s recently ate %s ', $this->getName(), implode(', ', $foodItems));
+    }
 }
