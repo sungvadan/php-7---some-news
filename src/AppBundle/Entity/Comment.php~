@@ -1,0 +1,32 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity()
+ */
+class Comment
+{
+
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id()
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="text")
+     *
+     */
+    private $text;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Post")
+     * @ORM\JoinColumn(name="post_id", referencedColumnName="id")
+     */
+    private $post;
+}

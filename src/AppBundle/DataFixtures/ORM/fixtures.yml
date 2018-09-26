@@ -41,3 +41,9 @@ AppBundle\Entity\GenusScientist:
         user: '@user.aquanaut_*'
         genus: '@genus_*'
         yearsStudied: <numberBetween(1, 30)>
+AppBundle\Entity\Post:
+    post_{1..10}:
+        title: <sentence()>
+        content: <text()>
+
+
